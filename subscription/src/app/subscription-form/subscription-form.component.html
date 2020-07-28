@@ -1,0 +1,13 @@
+<h3>Please subscribe to our newsletter</h3>
+<p>E-mail  address</p>
+<p><fancy-text></fancy-text></p>
+<p>Areas of interest</p>
+<!-- <p><fancy-checkbox [label]="'Volleyball'"></fancy-checkbox></p>
+<p><fancy-checkbox [label]="'Football'"></fancy-checkbox></p>
+<p><fancy-checkbox label="Soccer"></fancy-checkbox></p>
+ -->
+<p *ngFor="let interest of interests">
+
+    <fancy-checkbox label="{{interest}}"></fancy-checkbox>
+  
+</p>

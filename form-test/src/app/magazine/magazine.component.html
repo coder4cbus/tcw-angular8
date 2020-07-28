@@ -1,0 +1,31 @@
+<form #theForm="ngForm">
+    Full Name:<br/>
+<span style="color: red"
+[hidden]="theModel.valid || theModel.untouched">
+Please type your name<br/></span>
+<input name="fullName" type="text" required [(ngModel)]="fullName" #theElement #theModel="ngModel" /><br/>
+<!-- Class names: {{theElement.className}}<br/> -->
+Valid: {{theModel.valid}}<br/>
+InValid: {{theModel.invalid}}<br/>
+Touched: {{theModel.touched}}<br/>
+UnTouched: {{theModel.untouched}}<br/>
+Pristine: {{theModel.pristine}}<br/>
+Dirty: {{theModel.dirty}}<br/>
+
+Magazine Edition:<br/>
+<select name="selectedEdition" [(ngModel)]="selectedEdition">
+    <option *ngFor="let e of editions"
+    [ngValue]="e">{{e.editionName}}</option>
+</select><br/>
+Shipping Option:<br/>
+<input type="radio" name="selectedShipping"
+[(ngModel)]="selectedShipping" value="GROUND"/>Ground
+<input type="radio" name="selectedShipping"
+[(ngModel)]="selectedShipping" value="AIR"/>Air <br/>
+<label><input name="acceptPolicy" type="checkbox" [(ngModel)]="acceptPolicy"/>
+I accept the terms and conditions.</label><br/>
+<br/>
+Price: {{selectedEdition.price}}
+<br/>
+<button [disabled]="theForm.invalid || !acceptPolicy" 
+(click)="submitForm()">Purchase</button></form>

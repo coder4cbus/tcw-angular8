@@ -1,0 +1,13 @@
+<textarea [ngModel]="userInput" (ngModelChange)="updateHTML($event)"
+
+  rows="5" cols="40">
+
+</textarea><br/>
+
+<h4>Preview </h4>
+
+<div [innerHTML]="userInput"></div> <br/>
+
+<h4>Raw Text Preview - One Way Binding </h4>
+
+<pre>{{userInput}}</pre>
