@@ -1,0 +1,12 @@
+<h3>Add a Book</h3>
+
+<div>
+    <input type="text" [(ngModel)]="book.isbn" placeholder="ISBN">
+</div>
+<div>
+    <input type="text" [(ngModel)]="book.title" placeholder="Title">
+</div>
+<div>
+    <input type="text" [(ngModel)]="book.price" placeholder="Price">
+</div>
+<button (click)="addBook()">Save</button>

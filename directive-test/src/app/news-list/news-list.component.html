@@ -1,3 +1,16 @@
+<div>
+  <input type="text" [(ngModel)]="searchText" placeholder="Search"/>
+  <div *ngFor="let news of (newsItems | newsSearch:searchText); let newsId = index">
+  <!-- <div *ngFor="let news of newsItems; let newsId = index"> -->
+   <h3>{{news.title | uppercase}}</h3>
+<!-- <h3>{{news.title}}</h3> -->
+    <p [ngClass]="{collapsed: selectedNewsId != newsId}">
+    {{news.body}}
+    </p>
+    <a href (click)="expandNews(newsId)" [hidden]="selectedNewsId == newsId" > 
+    More…</a>
+  </div>
+</div>
 <!-- <div>
     <div *ngFor="let news of newsItems; let newsId = index">
         <h3>{{news.title}}</h3>
@@ -8,7 +21,7 @@
         *ngIf="selectedNewsId != newsId">More…</a>
     </div>
   </div> -->
-<div>
+<!-- <div>
   <div *ngFor="let news of newsItems; let newsId = index">
     <h3>{{news.title}}</h3>
     <p [ngClass]="{collapsed: selectedNewsId != newsId}">
@@ -17,7 +30,7 @@
     <a href (click)="expandNews(newsId)"
        [hidden]= "selectedNewsId == newsId">More…</a>
     </div>
-  </div>
+  </div> -->
 <!-- <div>
 	<div>
 		<h3>Man Playing Pokémon Go App Eaten By Lions</h3>
