@@ -7,14 +7,9 @@ import * as io from 'socket.io-client';
 })
 
 export class QuoteService {
-  ticker: string
-  exchange: string
-  price: string
-  change: string
   socket: any
 
-
-  constructor() { }
+constructor() { }
 
   getQuotes(): Observable<Quote> {
     const observable = Observable.create(
@@ -26,5 +21,11 @@ export class QuoteService {
     return observable;
   }
   disconnect() { this.socket.disconnect(); }
+}
 
+export class Quote {
+  ticker: string
+  exchange: string
+  price: string
+  change: string
 }

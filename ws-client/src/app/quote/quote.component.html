@@ -1,11 +1,22 @@
+<<<<<<< HEAD
 <p>quote works!</p>
 <h3>Latest Quote</h3>
 <div *ngIf="lastQuote != undefined">
+=======
+<h3>Latest Quote</h3>
+<div *ngIf="lastQuote !== undefined">
+>>>>>>> ee3c20bafa9330ae6fbaadb4bddd6a3bc7886e49
   <b>Symbol: </b> {{lastQuote.ticker}}<br/>
   <b>Price: </b> {{lastQuote.price}}<br/>
   <b>Change: </b> {{lastQuote.change}}<br/>
 </div>
+<<<<<<< HEAD
 
 <div *ngIf="lastQuote == undefined">
   Connecting...
 </div>
+=======
+<div *ngIf="lastQuote == undefined">
+  Connecting...
+</div>
+>>>>>>> ee3c20bafa9330ae6fbaadb4bddd6a3bc7886e49

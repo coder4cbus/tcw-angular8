@@ -21,6 +21,7 @@ export class DataService {
     return this.http.get<Book>(`/books/${isbn}`).pipe(tap(book => this.bookCache[isbn] = book),
     catchError(err => cachedBook ? of(cachedBook) : throwError(err))
     )}
+
     // return this.http.get<Book>(`/books/${isbn}`).pipe(
     //   tap(book => this.bookCache[isbn] = book) //Populate cache
     // )
@@ -31,25 +32,67 @@ export class DataService {
   }
   saveBook(book : Book) : Observable<any> {
     return this.http.put(`/books/${book.isbn}`, book).pipe(
-      tap(_ => delete this.bookCache[book.isbn]),
+      tap(_ => this.bookCache[book.isbn]),
     )}
+  }
+ 
+  // getBook(isbn: string) : Observable<Book> {
+  //   return this.http.get<Book>(`/books/${isbn}`)
+  // }
 
+/*   saveBook(book : Book) : Observable<any> {
+    return this.http.put(`/books/${book.isbn}`, book)
+  } */
+  
   getBooks() : Observable<Book[]> {
+    /*  let cachedBook = this.bookCache<Book[]>
+      if (cachedBook !== undefined) {
+        console.log("Got a cache hit!")
+        return of(cacheBook)
+      } else { */
+      return this.http.get<Book[]>("/books").pipe(
+        catchError((err:HttpErrorResponse) => {
+          if (err.status == 0) {
+            return throwError("getBooks: Oops! Please check your network connection and try again.")
+          } else {
+            return throwError("getBooks: Sorry there was a problem at the server level.")
+          }
+        })
+      )
+   }
+ 
+  
+/* getBooks() : Observable<Book[]> {
+  return this.http.get<Book[]>("/books")
+} */
+deleteBook(isbn: string) : Observable<any> {
+  return this.http.delete<Book>(`/books/${isbn}`).pipe(
+    tap(_ => delete this.bookCache[isbn]),
+      catchError((err:HttpErrorResponse) => {
+      if (err.status == 0) {
+        return throwError("Network connection issues... Please try again!")
+      } else {
+        return throwError("Server level Error Message.")
+      }
+    })
+  )
+}
+  // getBooks() : Observable<Book[]> {
    /*  let cachedBook = this.bookCache<Book[]>
     if (cachedBook !== undefined) {
       console.log("Got a cache hit!")
       return of(cacheBook)
     } else { */
-    return this.http.get<Book[]>("/books").pipe(
-      catchError((err:HttpErrorResponse) => {
-        if (err.status == 0) {
-          return throwError("getBooks: Oops! Please check your network connection and try again.")
-        } else {
-          return throwError("getBooks: Sorry there was a problem at the server level.")
-        }
-      })
-    )
-  }
+  //   return this.http.get<Book[]>("/books").pipe(
+  //     catchError((err:HttpErrorResponse) => {
+  //       if (err.status == 0) {
+  //         return throwError("getBooks: Oops! Please check your network connection and try again.")
+  //       } else {
+  //         return throwError("getBooks: Sorry there was a problem at the server level.")
+  //       }
+  //     })
+  //   )
+  // }
 
   deleteBook(isbn: string) : Observable<any> {
     return this.http.delete<Book>(`/books/${isbn}`).pipe(
@@ -59,10 +102,28 @@ export class DataService {
           return throwError("Network connection issues... Please try again!")
         } else {
           return throwError("Server level Error Message.")
+        })
+     )
+  }
+  
+export class Book {
+  isbn: string
+  title: string
+  price: number
+}
+//Generate Error on Delete of Book
+  /* deleteBook(book: Book) : Observable<any> {
+    return this.http.delete<Book>(`/books/bad-url/${book.isbn}`).pipe(
+      catchError((err:HttpErrorResponse) => {
+        if (err.status == 0) {
+          return throwError("Oops! Please check your network connection and try again.")
+        } else {
+          return throwError("Sorry there was a problem at the server level.")
         }
       })
     )
   }
+ */
 
   //Generate Error on Delete of Book
   /* deleteBook(book: Book) : Observable<any> {
@@ -78,9 +139,3 @@ export class DataService {
   }
  */
 
-}
-export class Book {
-  isbn: string
-  title: string
-  price: number
-}
