@@ -1,13 +1,14 @@
 <h3>Book Library</h3>
 <div>
-    <button [routerLink]="['/add-book']">Add a Book</button>
+    <button class="btn-primary" [routerLink]="['/add-book']">Add a Book</button>
 </div>
 <div *ngIf="books.length > 0">
-    <div *ngFor="let book of books">
-        {{book.isbn}} -  {{book.title}}  <b> {{book.price}}</b> 
-        <button (click)="deleteBook(book)">DELETE</button>
-        <button [routerLink]="['/edit-book', book.isbn]">EDIT</button>
+    <div *ngFor="let book of getDisplayList()">
+        {{book.isbn}} -  {{book.title}}  <b> {{book.price}}</b>
+        <button class="btn-danger" (click)="deleteBook(book)" placement="top" ngbTooltip="Delete the book">DELETE</button>
+        <button [routerLink]="['/edit-book', book.isbn]" placement="top" ngbTooltip="Edit the book">EDIT</button>
     </div>
+    <ngb-pagination [collectionSize]="books.length" [pageSize]="pageSize" [(page)]="page"></ngb-pagination>
 </div>
 <div *ngIf="books.length == 0">
     There are no books in the Library.
