@@ -1,1 +1,14 @@
-<p>home works!</p>
+<p>I am the HOME component!</p>
+<mat-card-header>
+  <mat-card-title>Article Title </mat-card-title>
+  <mat-card-subtitle>The best article ever... </mat-card-subtitle>
+</mat-card-header>
+<mat-card>
+  <mat-card-content>{{text}}</mat-card-content>
+<mat-card-actions role='region'>
+  <button mat-raised-button
+  color=accent (click)="onYes()" >Yes</button>
+  <button mat-raised-button
+  color=accent (click)="onNo()" >No</button>
+  <a mat-mini-fab color=primary (click)="onCountClick()" >{{wordCount}}</a>
+</mat-card-actions>

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'materialapp';
+  selectedValue: string = "";
+  items = [
+    { value: "0", view: "zero" },
+    { value: "1", view: "one" },
+    { value: "2", view: "Two" }
+  ];
 }

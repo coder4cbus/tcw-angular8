@@ -1,1 +1,18 @@
-<p>contacts works!</p>
+<p>My Contacts Component</p>
+<mat-card>
+  <mat-list>
+    <mat-list-item *ngFor='let contact of contacts; let i = index;'
+    (click)="onContactClick(i)" >
+      {{contact.name}}, {{contact.phone}}
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
+
+<!-- <mat-card>
+  <mat-list>
+    <mat-list-item> 1-Item ONE</mat-list-item>
+    <mat-list-item> 2-Item TWO</mat-list-item>
+  </mat-list>
+</mat-card>
+ -->
