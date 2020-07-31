@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditBookComponent implements OnInit {
   book:Book
+  // below var added to cause compilation errors for debugging
+  badVar:number = "hello";
   constructor(private dataService: DataService, private activeRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {

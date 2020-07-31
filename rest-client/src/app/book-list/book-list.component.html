@@ -10,6 +10,9 @@
     </div>
     <ngb-pagination [collectionSize]="books.length" [pageSize]="pageSize" [(page)]="page"></ngb-pagination>
 </div>
+<!-- below var added to cause compilation errors for debugging -->
+<!-- <div *if="books.length == 0"> -->
+<!-- below commented out for debugging above typo -->
 <div *ngIf="books.length == 0">
     There are no books in the Library.
 </div>
